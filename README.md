@@ -31,20 +31,15 @@ Dukungan bahasa lengkap untuk **RenzmcLang** - bahasa pemrograman berbasis Bahas
 - Ekstensi file: `.rmc`, `.renzmc`
 - Icon khusus untuk file RenzmcLang
 
-## 🚀 Instalasi
+## 🚀 Instalasi (Manual)
 
-### Dari VSCode Marketplace
-1. Buka VSCode
-2. Tekan `Ctrl+Shift+X` (atau `Cmd+Shift+X` di Mac)
-3. Cari "RenzmcLang"
-4. Klik "Install"
+1. Download file **`renzmc-language-support-1.0.0.vsix`** dari halaman [Releases](https://github.com/RenzMc/renzmc-extension/releases).
+2. Buka **Visual Studio Code**.
+3. Tekan **Ctrl+Shift+P** (Windows/Linux) atau **Cmd+Shift+P** (Mac).
+4. Ketik **Install from VSIX...** dan pilih file `renzmc-language-support-1.0.0.vsix`.
+5. Reload VSCode jika diminta.
 
-### Manual Installation
-1. Download file `.vsix` dari releases
-2. Buka VSCode
-3. Tekan `Ctrl+Shift+P` (atau `Cmd+Shift+P` di Mac)
-4. Ketik "Install from VSIX"
-5. Pilih file `.vsix` yang sudah didownload
+Selesai ✅ ekstensi siap digunakan.
 
 ## 📖 Penggunaan
 

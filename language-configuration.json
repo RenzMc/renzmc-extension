@@ -1,0 +1,53 @@
+{
+  "comments": {
+    "lineComment": "//",
+    "blockComment": ["/*", "*/"]
+  },
+  "brackets": [
+    ["{", "}"],
+    ["[", "]"],
+    ["(", ")"]
+  ],
+  "autoClosingPairs": [
+    { "open": "{", "close": "}" },
+    { "open": "[", "close": "]" },
+    { "open": "(", "close": ")" },
+    { "open": "&quot;", "close": "&quot;", "notIn": ["string"] },
+    { "open": "'", "close": "'", "notIn": ["string", "comment"] },
+    { "open": "&quot;&quot;&quot;", "close": "&quot;&quot;&quot;" },
+    { "open": "'''", "close": "'''" }
+  ],
+  "surroundingPairs": [
+    ["{", "}"],
+    ["[", "]"],
+    ["(", ")"],
+    ["&quot;", "&quot;"],
+    ["'", "'"]
+  ],
+  "folding": {
+    "markers": {
+      "start": "^\\s*//#?region\\b",
+      "end": "^\\s*//#?endregion\\b"
+    }
+  },
+  "wordPattern": "(-?\\d*\\.\\d\\w*)|([^\\`\\~\\!\\@\\#\\%\\^\\&\\*\\(\\)\\-\\=\\+\\[\\{\\]\\}\\\\\\|\\;\\:\\'\\&quot;\\,\\.\\<\\>\\/\\?\\s]+)",
+  "indentationRules": {
+    "increaseIndentPattern": "^\\s*(fungsi|buat|jika|kalau|selama|untuk|setiap|coba|kelas|metode|konstruktor|dengan|cocok|kasus|async|asinkron|def|class|if|while|for|try|match|case)\\b.*:\\s*$",
+    "decreaseIndentPattern": "^\\s*(selesai|akhir|tutup|end)\\b.*$"
+  },
+  "onEnterRules": [
+    {
+      "beforeText": "^\\s*(fungsi|buat|jika|kalau|selama|untuk|setiap|coba|kelas|metode|konstruktor|dengan|cocok|kasus|async|asinkron|def|class|if|while|for|try|match|case)\\b.*:\\s*$",
+      "action": { "indent": "indent" }
+    },
+    {
+      "beforeText": "^\\s*(selesai|akhir|tutup|end)\\s*$",
+      "action": { "indent": "outdent" }
+    },
+    {
+      "beforeText": "^\\s*(kalau_tidak|kalau_tidak_jika|lainnya|selain|tangkap|akhirnya|else|elif|except|finally)\\b.*:\\s*$",
+      "afterText": "^\\s*$",
+      "action": { "indent": "indent" }
+    }
+  ]
+}

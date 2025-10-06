@@ -1,0 +1,14 @@
+{
+  "iconDefinitions": {
+    "_renzmc_file": {
+      "iconPath": "../icon.png"
+    }
+  },
+  "fileExtensions": {
+    "rmc": "_renzmc_file",
+    "renzmc": "_renzmc_file"
+  },
+  "file": "_file",
+  "folder": "_folder",
+  "folderExpanded": "_folder_open"
+}

@@ -1,0 +1,451 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "RenzmcLang",
+  "scopeName": "source.renzmc",
+  "patterns": [
+    { "include": "#comments" },
+    { "include": "#strings" },
+    { "include": "#keywords" },
+    { "include": "#operators" },
+    { "include": "#numbers" },
+    { "include": "#functions" },
+    { "include": "#classes" },
+    { "include": "#constants" },
+    { "include": "#builtins" },
+    { "include": "#variables" },
+    { "include": "#punctuation" }
+  ],
+  "repository": {
+    "comments": {
+      "patterns": [
+        {
+          "name": "comment.line.double-slash.renzmc",
+          "match": "//.*$"
+        },
+        {
+          "name": "comment.line.number-sign.renzmc",
+          "match": "#.*$"
+        },
+        {
+          "name": "comment.line.double-dash.renzmc",
+          "match": "--.*$"
+        },
+        {
+          "name": "comment.block.renzmc",
+          "begin": "/\\*",
+          "end": "\\*/"
+        }
+      ]
+    },
+    "strings": {
+      "patterns": [
+        {
+          "name": "string.quoted.triple.double.renzmc",
+          "begin": "&quot;&quot;&quot;",
+          "end": "&quot;&quot;&quot;",
+          "patterns": [
+            {
+              "name": "constant.character.escape.renzmc",
+              "match": "\\\\."
+            }
+          ]
+        },
+        {
+          "name": "string.quoted.triple.single.renzmc",
+          "begin": "'''",
+          "end": "'''",
+          "patterns": [
+            {
+              "name": "constant.character.escape.renzmc",
+              "match": "\\\\."
+            }
+          ]
+        },
+        {
+          "name": "string.interpolated.renzmc",
+          "begin": "f&quot;",
+          "end": "&quot;",
+          "patterns": [
+            {
+              "name": "meta.embedded.line.renzmc",
+              "begin": "\\{",
+              "end": "\\}",
+              "patterns": [
+                { "include": "$self" }
+              ]
+            },
+            {
+              "name": "constant.character.escape.renzmc",
+              "match": "\\\\."
+            }
+          ]
+        },
+        {
+          "name": "string.interpolated.single.renzmc",
+          "begin": "f'",
+          "end": "'",
+          "patterns": [
+            {
+              "name": "meta.embedded.line.renzmc",
+              "begin": "\\{",
+              "end": "\\}",
+              "patterns": [
+                { "include": "$self" }
+              ]
+            },
+            {
+              "name": "constant.character.escape.renzmc",
+              "match": "\\\\."
+            }
+          ]
+        },
+        {
+          "name": "string.quoted.double.renzmc",
+          "begin": "&quot;",
+          "end": "&quot;",
+          "patterns": [
+            {
+              "name": "constant.character.escape.renzmc",
+              "match": "\\\\."
+            }
+          ]
+        },
+        {
+          "name": "string.quoted.single.renzmc",
+          "begin": "'",
+          "end": "'",
+          "patterns": [
+            {
+              "name": "constant.character.escape.renzmc",
+              "match": "\\\\."
+            }
+          ]
+        }
+      ]
+    },
+    "keywords": {
+      "patterns": [
+        {
+          "name": "keyword.control.conditional.renzmc",
+          "match": "\\b(jika|kalau|maka|kalau_tidak|kalau_tidak_jika|lainnya|selain)\\b"
+        },
+        {
+          "name": "keyword.control.loop.renzmc",
+          "match": "\\b(selama|ulangi|kali|untuk|setiap|dari|sampai|hingga)\\b"
+        },
+        {
+          "name": "keyword.control.flow.renzmc",
+          "match": "\\b(lanjut|berhenti|lewati|keluar|kembali|hasil|kembalikan)\\b"
+        },
+        {
+          "name": "keyword.control.exception.renzmc",
+          "match": "\\b(coba|tangkap|akhirnya|lempar|raise)\\b"
+        },
+        {
+          "name": "keyword.control.switch.renzmc",
+          "match": "\\b(cocok|kasus|bawaan|default)\\b"
+        },
+        {
+          "name": "keyword.control.end.renzmc",
+          "match": "\\b(selesai|akhir|tutup)\\b"
+        },
+        {
+          "name": "keyword.declaration.function.renzmc",
+          "match": "\\b(fungsi|buat|def|lambda|fungsi_cepat)\\b"
+        },
+        {
+          "name": "keyword.declaration.class.renzmc",
+          "match": "\\b(kelas|class|metode|konstruktor|warisi|turunan|extends|super)\\b"
+        },
+        {
+          "name": "keyword.declaration.async.renzmc",
+          "match": "\\b(async|asinkron|await|tunggu|yield|hasilkan|hasil_bertahap|hasil_dari)\\b"
+        },
+        {
+          "name": "keyword.declaration.decorator.renzmc",
+          "match": "\\b(dekorator|properti|metode_statis|metode_kelas|staticmethod|classmethod|property)\\b"
+        },
+        {
+          "name": "keyword.declaration.type.renzmc",
+          "match": "\\b(tipe|jenis_data|type|annotation)\\b"
+        },
+        {
+          "name": "keyword.other.import.renzmc",
+          "match": "\\b(impor|impor_python|dari_python|gunakan|import|from|as)\\b"
+        },
+        {
+          "name": "keyword.other.context.renzmc",
+          "match": "\\b(dengan|sebagai|with)\\b"
+        },
+        {
+          "name": "keyword.other.assignment.renzmc",
+          "match": "\\b(itu|adalah|simpan|ke|dalam|set)\\b"
+        },
+        {
+          "name": "keyword.other.parameter.renzmc",
+          "match": "\\b(parameter|param|args|kwargs)\\b"
+        },
+        {
+          "name": "keyword.other.call.renzmc",
+          "match": "\\b(panggil|panggil_python|jalankan|call|execute)\\b"
+        },
+        {
+          "name": "keyword.other.module.renzmc",
+          "match": "\\b(modul|paket|module|package)\\b"
+        },
+        {
+          "name": "keyword.other.stream.renzmc",
+          "match": "\\b(stream|aliran|emit|pancar|listen|dengar)\\b"
+        },
+        {
+          "name": "keyword.other.functional.renzmc",
+          "match": "\\b(map|peta|filter|saring|reduce|kurangi|generator)\\b"
+        },
+        {
+          "name": "keyword.other.error.renzmc",
+          "match": "\\b(error|kesalahan|exception)\\b"
+        },
+        {
+          "name": "keyword.other.cache.renzmc",
+          "match": "\\b(simpan_cache|cache|lazy|malas)\\b"
+        },
+        {
+          "name": "keyword.other.http.renzmc",
+          "match": "\\b(rute|route|get|post|put|delete|patch|api|endpoint)\\b"
+        },
+        {
+          "name": "keyword.other.special.renzmc",
+          "match": "\\b(some|none|kosong|nihil|null)\\b"
+        }
+      ]
+    },
+    "operators": {
+      "patterns": [
+        {
+          "name": "keyword.operator.arithmetic.renzmc",
+          "match": "\\+|\\-|\\*|\\/|%|\\*\\*|\\/\\/"
+        },
+        {
+          "name": "keyword.operator.comparison.renzmc",
+          "match": "==|!=|>|<|>=|<="
+        },
+        {
+          "name": "keyword.operator.logical.renzmc",
+          "match": "\\b(dan|atau|bukan|tidak|and|or|not)\\b"
+        },
+        {
+          "name": "keyword.operator.bitwise.renzmc",
+          "match": "&|\\||\\^|~|<<|>>"
+        },
+        {
+          "name": "keyword.operator.assignment.renzmc",
+          "match": "=|\\+=|\\-=|\\*=|\\/=|%=|\\*\\*=|\\/\\/=|&=|\\|=|\\^=|<<=|>>="
+        },
+        {
+          "name": "keyword.operator.walrus.renzmc",
+          "match": ":="
+        },
+        {
+          "name": "keyword.operator.membership.renzmc",
+          "match": "\\b(dalam|tidak_dalam|in|not_in|is|adalah)\\b"
+        },
+        {
+          "name": "keyword.operator.arrow.renzmc",
+          "match": "->|=>"
+        }
+      ]
+    },
+    "numbers": {
+      "patterns": [
+        {
+          "name": "constant.numeric.float.renzmc",
+          "match": "\\b\\d+\\.\\d+([eE][+-]?\\d+)?\\b"
+        },
+        {
+          "name": "constant.numeric.integer.renzmc",
+          "match": "\\b\\d+\\b"
+        },
+        {
+          "name": "constant.numeric.hex.renzmc",
+          "match": "\\b0[xX][0-9a-fA-F]+\\b"
+        },
+        {
+          "name": "constant.numeric.binary.renzmc",
+          "match": "\\b0[bB][01]+\\b"
+        },
+        {
+          "name": "constant.numeric.octal.renzmc",
+          "match": "\\b0[oO][0-7]+\\b"
+        }
+      ]
+    },
+    "functions": {
+      "patterns": [
+        {
+          "name": "entity.name.function.declaration.renzmc",
+          "match": "\\b(fungsi|buat|def)\\s+(\\w+)\\b",
+          "captures": {
+            "1": { "name": "keyword.declaration.function.renzmc" },
+            "2": { "name": "entity.name.function.renzmc" }
+          }
+        },
+        {
+          "name": "entity.name.function.async.renzmc",
+          "match": "\\b(async|asinkron)\\s+(fungsi|buat|def)\\s+(\\w+)\\b",
+          "captures": {
+            "1": { "name": "keyword.declaration.async.renzmc" },
+            "2": { "name": "keyword.declaration.function.renzmc" },
+            "3": { "name": "entity.name.function.renzmc" }
+          }
+        },
+        {
+          "name": "meta.function-call.renzmc",
+          "match": "\\b(\\w+)\\s*(?=\\()",
+          "captures": {
+            "1": { "name": "entity.name.function.renzmc" }
+          }
+        }
+      ]
+    },
+    "classes": {
+      "patterns": [
+        {
+          "name": "entity.name.class.declaration.renzmc",
+          "match": "\\b(kelas|class)\\s+([A-Z]\\w*)\\b",
+          "captures": {
+            "1": { "name": "keyword.declaration.class.renzmc" },
+            "2": { "name": "entity.name.class.renzmc" }
+          }
+        },
+        {
+          "name": "entity.name.class.renzmc",
+          "match": "\\b[A-Z][a-zA-Z0-9_]*\\b"
+        }
+      ]
+    },
+    "constants": {
+      "patterns": [
+        {
+          "name": "constant.language.boolean.renzmc",
+          "match": "\\b(benar|salah|Benar|Salah|BENAR|SALAH|True|False|true|false)\\b"
+        },
+        {
+          "name": "constant.language.null.renzmc",
+          "match": "\\b(kosong|nihil|null|None|nil)\\b"
+        },
+        {
+          "name": "variable.language.self.renzmc",
+          "match": "\\b(self|ini|diri|this)\\b"
+        }
+      ]
+    },
+    "builtins": {
+      "patterns": [
+        {
+          "name": "support.function.builtin.io.renzmc",
+          "match": "\\b(tampilkan|tulis|cetak|tunjukkan|tanya|input|baca|print|write|read)\\b"
+        },
+        {
+          "name": "support.function.builtin.string.renzmc",
+          "match": "\\b(panjang|huruf_besar|huruf_kecil|huruf_kapital|potong|ganti|pisah|gabung|hapus_spasi|cari|mulai_dengan|akhiri_dengan|adalah_angka|adalah_huruf|adalah_alfanumerik|len|upper|lower|capitalize|slice|replace|split|join|strip|find|startswith|endswith|isdigit|isalpha|isalnum)\\b"
+        },
+        {
+          "name": "support.function.builtin.math.renzmc",
+          "match": "\\b(bulat|pembulatan_atas|pembulatan_bawah|absolut|pangkat|akar|sinus|cosinus|tangen|rata_rata|nilai_tengah|modus|deviasi_standar|variansi|round|ceil|floor|abs|pow|sqrt|sin|cos|tan|mean|median|mode|std|variance)\\b"
+        },
+        {
+          "name": "support.function.builtin.list.renzmc",
+          "match": "\\b(tambah|hapus|masukkan|sisipkan|urutkan|balik|jumlah|min|max|append|remove|insert|sort|reverse|sum)\\b"
+        },
+        {
+          "name": "support.function.builtin.dict.renzmc",
+          "match": "\\b(kunci|nilai|items|perbarui|keys|values|update|get)\\b"
+        },
+        {
+          "name": "support.function.builtin.file.renzmc",
+          "match": "\\b(baca_file|tulis_file|tambah_file|hapus_file|ada_file|buka|tutup|read_file|write_file|append_file|delete_file|exists|open|close)\\b"
+        },
+        {
+          "name": "support.function.builtin.json.renzmc",
+          "match": "\\b(json_parse|json_stringify|json_baca|json_tulis|json_load|json_dump)\\b"
+        },
+        {
+          "name": "support.function.builtin.http.renzmc",
+          "match": "\\b(http_get|http_post|http_put|http_delete|http_patch|ambil_http|kirim_http|perbarui_http|hapus_http)\\b"
+        },
+        {
+          "name": "support.function.builtin.system.renzmc",
+          "match": "\\b(waktu|tanggal|acak|acak_bulat|pilih_acak|direktori_sekarang|direktori_ada|buat_direktori|time|date|random|randint|choice|getcwd|exists|mkdir)\\b"
+        },
+        {
+          "name": "support.function.builtin.conversion.renzmc",
+          "match": "\\b(ke_teks|ke_angka|ke_bulat|ke_boolean|ke_list|str|int|float|bool|list|dict|tuple|set)\\b"
+        },
+        {
+          "name": "support.function.builtin.iteration.renzmc",
+          "match": "\\b(zip|enumerate|range|map|filter|reduce|sorted|reversed)\\b"
+        },
+        {
+          "name": "support.function.builtin.type.renzmc",
+          "match": "\\b(jenis|tipe|type|isinstance)\\b"
+        }
+      ]
+    },
+    "variables": {
+      "patterns": [
+        {
+          "name": "variable.other.constant.renzmc",
+          "match": "\\b[A-Z_][A-Z0-9_]*\\b"
+        },
+        {
+          "name": "variable.other.renzmc",
+          "match": "\\b[a-z_][a-zA-Z0-9_]*\\b"
+        }
+      ]
+    },
+    "punctuation": {
+      "patterns": [
+        {
+          "name": "punctuation.separator.comma.renzmc",
+          "match": ","
+        },
+        {
+          "name": "punctuation.separator.colon.renzmc",
+          "match": ":"
+        },
+        {
+          "name": "punctuation.separator.semicolon.renzmc",
+          "match": ";"
+        },
+        {
+          "name": "punctuation.accessor.dot.renzmc",
+          "match": "\\."
+        },
+        {
+          "name": "punctuation.section.brackets.begin.renzmc",
+          "match": "\\["
+        },
+        {
+          "name": "punctuation.section.brackets.end.renzmc",
+          "match": "\\]"
+        },
+        {
+          "name": "punctuation.section.braces.begin.renzmc",
+          "match": "\\{"
+        },
+        {
+          "name": "punctuation.section.braces.end.renzmc",
+          "match": "\\}"
+        },
+        {
+          "name": "punctuation.section.parens.begin.renzmc",
+          "match": "\\("
+        },
+        {
+          "name": "punctuation.section.parens.end.renzmc",
+          "match": "\\)"
+        }
+      ]
+    }
+  }
+}

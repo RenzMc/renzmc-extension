@@ -26,6 +26,7 @@
     "programming language"
   ],
   "icon": "icon.png",
+  "main": "./src/extension.js",
   "contributes": {
     "languages": [
       {
@@ -59,8 +60,28 @@
         "label": "RenzmcLang File Icons",
         "path": "./fileicons/renzmc-icon-theme.json"
       }
-    ]
+    ],
+    "commands": [
+      {
+        "command": "renzmc.run",
+        "title": "Run RenzMC File",
+        "category": "RenzMC"
+      }
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "command": "renzmc.run",
+          "when": "resourceExtname == '.rmc' || resourceExtname == '.renzmc'",
+          "group": "navigation"
+        }
+      ]
+    }
   },
+  "activationEvents": [
+    "onLanguage:renzmc",
+    "onCommand:renzmc.run"
+  ],
   "devDependencies": {
     "@types/vscode": "^1.75.0"
   }
